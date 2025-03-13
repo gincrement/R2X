@@ -48,7 +48,8 @@ def defaults_dict() -> dict[str, str]:
     plugins_dict = read_json("r2x/defaults/plugins_config.json")
     plexos_dict = read_json("r2x/defaults/plexos_output.json")
     sienna_dict = read_json("r2x/defaults/sienna_config.json")
-    combined_dict = config_dict | plugins_dict | plexos_dict | sienna_dict
+    pypsa_dict = read_json("r2x/defaults/pypsa_config.json")
+    combined_dict = config_dict | plugins_dict | plexos_dict | sienna_dict | pypsa_dict
     return combined_dict
 
 

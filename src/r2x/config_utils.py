@@ -13,6 +13,7 @@ from .config_models import (
     ParserModels,
     PlexosConfig,
     SiennaConfig,
+    PypsaConfig,
 )
 from .utils import read_fmap, read_json
 
@@ -62,6 +63,9 @@ def get_output_defaults(model_enum: Models) -> dict:
         case Models.SIENNA:
             defaults_dict = read_json("r2x/defaults/sienna_config.json")
             logger.debug("Returning sienna defaults")
+        case Models.PYPSA:
+            defaults_dict = read_json("r2x/defaults/pypsa_config.json")
+            logger.debug("Returning pypsa defaults")
         case _:
             msg = (
                 f"Unsupported input model: {model_enum}. "
@@ -84,6 +88,8 @@ def get_input_model_fmap(model_enum: Models) -> dict:
             fmap = read_fmap("r2x/defaults/reeds_us_mapping.json")
         case Models.SIENNA:
             fmap = read_fmap("r2x/defaults/sienna_mapping.json")
+        case Models.PYPSA:
+            fmap = read_fmap("r2x/defaults/pypsa_mapping.json")
         case Models.PLEXOS:
             fmap = read_fmap("r2x/defaults/plexos_mapping.json")
         case _:
@@ -117,6 +123,11 @@ def get_year(model_class: BaseModelConfig):
 
 @get_year.register
 def _(model_class: SiennaConfig):
+    return model_class.model_year
+
+
+@get_year.register
+def _(model_class: PypsaConfig):
     return model_class.model_year
 
 

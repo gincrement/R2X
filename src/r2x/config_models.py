@@ -94,6 +94,12 @@ class SiennaConfig(BaseModelConfig):
     model_year: int | None = None
 
 
+class PypsaConfig(BaseModelConfig):
+    """PyPSA specific configuration."""
+
+    model_year: int | None = None
+
+
 class InfrasysConfig(BaseModelConfig):
     """Infrasys specific configuration."""
 
@@ -117,6 +123,7 @@ class Models(StrEnum):
     REEDS = "REEDS-US"
     PLEXOS = "PLEXOS"
     SIENNA = "SIENNA"
+    PYPSA = "PYPSA"
     PRAS = "PRAS"
 
 
@@ -126,7 +133,7 @@ class ParserModels(StrEnum):
     INFRASYS = "INFRASYS"
     REEDS = "REEDS-US"
     PLEXOS = "PLEXOS"
-    SIENNA = "SIENNA"
+    # SIENNA = "SIENNA"
 
 
 class ExporterModels(StrEnum):
@@ -134,6 +141,7 @@ class ExporterModels(StrEnum):
 
     PLEXOS = "PLEXOS"
     SIENNA = "SIENNA"
+    PYPSA = "PYPSA"
     INFRASYS = "INFRASYS"
 
 
@@ -141,5 +149,6 @@ MODEL_CONFIGS = {
     Models.REEDS: ReEDSConfig,
     Models.PLEXOS: PlexosConfig,
     Models.SIENNA: SiennaConfig,
+    Models.PYPSA: PypsaConfig,
     Models.INFRASYS: InfrasysConfig,
 }
